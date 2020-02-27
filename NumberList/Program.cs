@@ -18,17 +18,29 @@ namespace NumberList
 
             do
             {
-                Console.Write("Please enter a number: ");
+                Console.Write("Please enter a number (or 'X' to exit): ");
                 string strNumber = Console.ReadLine();
-                if (strNumber != "X")
+                if (strNumber == "X" || strNumber == "x")
                 {
-                    int intNum = Int32.Parse(strNumber);
-                    Numbers.Add(intNum);
-                    Statistics(Numbers);
+                    Console.WriteLine();
+                    Console.WriteLine("Exiting 'NumberList'.  Have a nice day.");
+                    Console.WriteLine();
+                    break;
                 }
                 else
                 {
-                    break;
+                    try
+                    {
+                        int intNum = int.Parse(strNumber);
+                        Numbers.Add(intNum);
+                        Statistics(Numbers);
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine("Please enter a whole number.");
+                        Console.WriteLine();
+                    }
                 }
                 
                 
